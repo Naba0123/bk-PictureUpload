@@ -40,9 +40,9 @@ public class PictureUpload {
 		js.readyCal();
 		js.GenerateStr(args[0], title, explain);
 
-		System.out.println(js.GetStr());
+		System.out.println(js.GetUsage());
 
-		file.writeFile(js.GetStr(), js.GetUsage());
+		file.writeFile(js.GetStr());
 
 	}
 
