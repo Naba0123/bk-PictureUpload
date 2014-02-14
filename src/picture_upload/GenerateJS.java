@@ -31,7 +31,7 @@ public class GenerateJS {
 		str += "</a>" + year + " / " + String.format("%1$2d", month) + " / "
 				+ String.format("%1$2d", day) + "<br>" + title + "</th>')";
 		// usageの生成
-		usage = "<script src=\"" + path + ".js\"></script>";
+		usage = "<script src=\"2014_js/" + path + ".js\"></script>";
 	}
 
 	String GetStr() {
