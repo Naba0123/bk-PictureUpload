@@ -1,14 +1,7 @@
 package picture_upload;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.channels.FileChannel;
 
 import javax.imageio.ImageIO;
@@ -104,10 +97,9 @@ public class FileOperate {
 		try {
 			File writeFile = new File("2014_js/" + filename + type);
 			writeFile.createNewFile();
-			BufferedWriter bw = new BufferedWriter(new FileWriter(writeFile, true));
-			bw.write(str);
-			bw.newLine();
-			bw.close();
+			PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(writeFile),"UTF-8"))); 
+			pw.println(str);
+			pw.close();
 		} catch (IOException e) {
 			System.out.println(e);
 		}
