@@ -29,6 +29,15 @@ public class FileOperate {
 			System.out.println("写真[ " + file.getAbsolutePath() + " ]は存在していません。");
 			System.exit(1);
 		}
+	    makeDir("2014_img/");
+	    makeDir("2014_js/");
+	}
+	
+	private void makeDir(String str) {
+		File dirs = new File(str);
+		if (!dirs.exists()) {  
+	        dirs.mkdirs();    //make folders  
+	    }  
 	}
 
 	/**
