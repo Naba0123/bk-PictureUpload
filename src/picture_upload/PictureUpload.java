@@ -1,17 +1,16 @@
 package picture_upload;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class PictureUpload {
 
+	static String filename;
 	static String title;
 	static String explain;
 
 	public static void main(String[] args) {
 
-		// 当分はコマンドライン上からの実行となる
+		/* 当分はコマンドライン上からの実行となる */
 
 		// 引数チェック
 		if (args.length < 1) {
@@ -20,29 +19,36 @@ public class PictureUpload {
 			System.exit(1);
 		}
 
+		// ファイルの読み込み
 		FileOperate file = new FileOperate(args[0]);
-		GenerateJS js = new GenerateJS();
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		System.out.print("写真のタイトル : ");
+		GenerateJS js = new GenerateJS();
+
+		// ファイル情報
+		filename = FileOperate.inputStr("写真ファイル名(拡張子除く)", true);
+		title = FileOperate.inputStr("写真のタイトル", false);
+		explain = FileOperate.inputStr("写真の説明", false);
+
+		// 新しいファイル名を伝える
+		file.newFile(filename);
+
+		// ファイルのコピー
 		try {
-			title = br.readLine();
+			file.copyFile();
 		} catch (IOException e) {
-			System.out.println("入力エラー : " + e.getMessage());
+			e.printStackTrace();
 		}
-		System.out.print("写真の説明 : ");
-		try {
-			explain = br.readLine();
-		} catch (IOException e) {
-			System.out.println("入力エラー : " + e.getMessage());
-		}
+
+		// サムネイルの作成
+		file.createThum();
 
 		js.readyCal();
-		js.GenerateStr(args[0], title, explain);
+		js.GenerateStr(filename, title, explain);
 
 		System.out.println(js.GetUsage());
 
-		file.writeFile(js.GetStr());
+		file.writeFile(js.GetStr(), ".js");
+		file.writeFile(js.GetUsage(), ".txt");
 
 	}
 

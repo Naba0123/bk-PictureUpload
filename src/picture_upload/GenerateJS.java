@@ -23,13 +23,9 @@ public class GenerateJS {
 
 	void GenerateStr(String path, String title, String explain) {
 		// strの生成
-		str = "document.write('<th id=\"picture_text\"><a href=\"2014_img/"
-				+ path + ".png\" data-lightbox=\"2014\" title=\"" + explain
-				+ "\" class=\"pso2\">";
-		str += "<img src=\"2014_img/" + path + "(1).png\" alt=\"" + title
-				+ "\" class=\"thum\">";
-		str += "</a>" + year + " / " + String.format("%1$2d", month) + " / "
-				+ String.format("%1$2d", day) + "<br>" + title + "</th>')";
+		str = "document.write('<th id=\"picture_text\"><a href=\"2014_img/" + path + ".png\" data-lightbox=\"2014\" title=\"" + explain + "\" class=\"pso2\">";
+		str += "<img src=\"2014_img/" + path + "_thum.png\" alt=\"" + title + "\" class=\"thum\">";
+		str += "</a>" + year + " / " + String.format("%1$2d", month) + " / " + String.format("%1$2d", day) + "<br>" + title + "</th>')";
 		// usageの生成
 		usage = "<script src=\"2014_js/" + path + ".js\"></script>";
 	}
